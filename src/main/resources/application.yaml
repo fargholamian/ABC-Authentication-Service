@@ -1,11 +1,11 @@
 server:
-  port: 9000
+  port: 8081
 
 spring:
   application:
     name: 'authentication-service'
   datasource:
-    url: 'jdbc:mysql://127.0.0.1:3306/auth'
+    url: 'jdbc:mysql://127.0.0.1:3306/auth?createDatabaseIfNotExist=true'
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,9 +16,26 @@ spring:
 
   security:
     jwt-secret: 'b0301262-ba1c-4ada-89f2-397df966b820'
-    jwt-expiration-in-seconds: 86400
-    jwt-refresh-token-expiration-in-seconds: 604800
+    jwt-expiration-in-seconds: 300
+    jwt-refresh-token-expiration-in-seconds: 86400
 
 logging:
   level:
     root: info
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: 'jdbc:mysql://abc-mysql:3306/auth?createDatabaseIfNotExist=true'
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8080
+
+logging:
+  level:
+    root: error
