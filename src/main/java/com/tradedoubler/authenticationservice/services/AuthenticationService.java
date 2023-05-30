@@ -1,6 +1,6 @@
 package com.tradedoubler.authenticationservice.services;
 
-import com.tradedoubler.authenticationservice.entity.User;
+import com.tradedoubler.authenticationservice.model.User;
 import com.tradedoubler.authenticationservice.model.AuthResponse;
 import com.tradedoubler.authenticationservice.model.AuthenticationRequest;
 import com.tradedoubler.authenticationservice.utils.AuthenticationUtils;

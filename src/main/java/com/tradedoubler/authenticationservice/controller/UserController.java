@@ -1,5 +1,6 @@
 package com.tradedoubler.authenticationservice.controller;
 
+import com.tradedoubler.authenticationservice.model.User;
 import com.tradedoubler.authenticationservice.utils.AuthenticationUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   @GetMapping
-  public ResponseEntity<Response> getCurrentUser() {
+  public ResponseEntity<User> getCurrentUser() {
     return ResponseEntity
         .ok()
-        .body(Response.from(AuthenticationUtils.getCurrentUser()));
+        .body(AuthenticationUtils.getCurrentUser());
   }
 }

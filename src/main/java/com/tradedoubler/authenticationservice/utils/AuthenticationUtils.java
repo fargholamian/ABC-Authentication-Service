@@ -1,6 +1,6 @@
 package com.tradedoubler.authenticationservice.utils;
 
-import com.tradedoubler.authenticationservice.entity.User;
+import com.tradedoubler.authenticationservice.model.User;
 import com.tradedoubler.authenticationservice.enums.TokenType;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +12,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +26,6 @@ import static com.tradedoubler.authenticationservice.enums.TokenType.AUTH;
 import static com.tradedoubler.authenticationservice.enums.TokenType.REFRESH;
 import static java.util.Collections.singletonMap;
 
-@Slf4j
 @Component
 public class AuthenticationUtils {
 
@@ -114,7 +112,6 @@ public class AuthenticationUtils {
         .setExpiration(new Date(System.currentTimeMillis()
             + expirationInSeconds * 1000))
         .compact();
-
   }
 
   public static Authentication getAuthentication(String token,
@@ -130,9 +127,8 @@ public class AuthenticationUtils {
           && claims.getExpiration().after(new Date());
     }
     catch (IllegalArgumentException | JwtException e) {
-      log.error("Invalid JWT auth token", e);
+      return Boolean.FALSE;
     }
-    return Boolean.FALSE;
   }
 
   public static class SecurityConstants {

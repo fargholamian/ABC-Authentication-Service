@@ -1,4 +1,4 @@
-package com.tradedoubler.authenticationservice.config;
+package com.tradedoubler.authenticationservice.security;
 
 import static com.tradedoubler.authenticationservice.enums.TokenType.AUTH;
 import static com.tradedoubler.authenticationservice.utils.AuthenticationUtils.getAuthentication;
@@ -6,7 +6,8 @@ import static com.tradedoubler.authenticationservice.utils.AuthenticationUtils.g
 import static com.tradedoubler.authenticationservice.utils.AuthenticationUtils.isTokenValid;
 import static org.springframework.util.StringUtils.hasText;
 
-import com.tradedoubler.authenticationservice.entity.User;
+import com.tradedoubler.authenticationservice.model.User;
+import com.tradedoubler.authenticationservice.services.UserService;
 import com.tradedoubler.authenticationservice.utils.AuthenticationUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -15,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -24,7 +24,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @AllArgsConstructor
 public class AuthenticationFilter extends OncePerRequestFilter {
 
-  private final UserDetailsService userDetailsService;
+  private final UserService userService;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request,
@@ -42,7 +42,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
   private void setSecurityContext(String token) {
     try {
       String username = getSubjectFromToken(token);
-      User user = (User) userDetailsService.loadUserByUsername(username);
+      User user = userService.loadUserByUsername(username);
       SecurityContextHolder.getContext()
           .setAuthentication(getAuthentication(token, user));
     }

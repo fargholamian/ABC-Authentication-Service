@@ -6,7 +6,6 @@ import com.tradedoubler.authenticationservice.services.AuthenticationService;
 import com.tradedoubler.authenticationservice.services.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,18 +24,12 @@ public class AuthenticationController {
   @PostMapping(value = "login")
   public ResponseEntity<?> loginUser(
       @RequestBody @Valid AuthenticationRequest authenticationRequest) {
-    return ResponseEntity.ok(Response
-        .from(authenticationService.authenticateUser(authenticationRequest)));
+    return ResponseEntity.ok(authenticationService.authenticateUser(authenticationRequest));
   }
 
   @PostMapping(value = "register")
   public ResponseEntity<?> registerUser(
       @RequestBody @Valid RegistrationRequest registrationRequest) {
-    try {
-      var response = userService.registerUser(registrationRequest);
-      return ResponseEntity.ok(Response.from(response));
-    } catch (DataIntegrityViolationException ignored) {
-      return ResponseEntity.internalServerError().body("User already exists");
-    }
+      return ResponseEntity.ok(userService.registerUser(registrationRequest));
   }
 }

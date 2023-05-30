@@ -3,14 +3,12 @@ package com.tradedoubler.authenticationservice.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 import static com.tradedoubler.authenticationservice.utils.AuthenticationUtils.SecurityConstants.HEADER_REQUEST_TOKEN_VALUE_PREFIX;
 
-@Data
+@Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponse {
 

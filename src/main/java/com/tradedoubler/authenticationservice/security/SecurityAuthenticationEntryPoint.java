@@ -1,4 +1,4 @@
-package com.tradedoubler.authenticationservice;
+package com.tradedoubler.authenticationservice.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,6 +14,6 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response,
                        AuthenticationException authException) throws IOException {
-    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized - Set a valid JWT Token");
   }
 }

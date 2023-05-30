@@ -1,6 +1,6 @@
 package com.tradedoubler.authenticationservice.repo;
 
-import com.tradedoubler.authenticationservice.entity.User;
+import com.tradedoubler.authenticationservice.model.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

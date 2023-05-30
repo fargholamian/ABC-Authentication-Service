@@ -1,4 +1,4 @@
-package com.tradedoubler.authenticationservice.entity;
+package com.tradedoubler.authenticationservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tradedoubler.authenticationservice.enums.Role;
@@ -6,7 +6,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -17,14 +16,14 @@ import jakarta.persistence.Transient;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @Entity
 @Builder
 @NoArgsConstructor

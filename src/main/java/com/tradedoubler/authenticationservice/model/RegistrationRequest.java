@@ -4,13 +4,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
+@SuperBuilder
 @Valid
 public class RegistrationRequest extends AuthenticationRequest {
 

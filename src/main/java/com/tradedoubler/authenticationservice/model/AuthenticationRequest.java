@@ -2,12 +2,14 @@ package com.tradedoubler.authenticationservice.model;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@Data
-@NoArgsConstructor
+@Getter
+@SuperBuilder
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationRequest {
 
   @NotBlank(message = "username must be provided.")

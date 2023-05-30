@@ -1,6 +1,5 @@
-package com.tradedoubler.authenticationservice.config;
+package com.tradedoubler.authenticationservice.security;
 
-import com.tradedoubler.authenticationservice.SecurityAuthenticationEntryPoint;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
